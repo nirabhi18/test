@@ -20,72 +20,115 @@ Go to Home > Transform Data.
 Run the SQL Queries to prepare data for visualization:
 Total Revenue- SELECT SUM(total_price) AS Total_Revenue FROM pizza_sales;
 (https://github.com/nirabhi18/test/assets/174709222/9c4cd00d-9cab-4b78-89ee-4d2cb94608a8) 
+
 Average Order Value-SELECT (SUM(total_price) / COUNT(DISTINCT order_id)) AS Avg_order_Value FROM pizza_sales;
 (https://github.com/nirabhi18/test/assets/174709222/5abcbbfd-04e3-470c-b94f-eef2adea29f1) 
+
 Total Pizzas Sold- SELECT SUM(quantity) AS Total_pizza_sold FROM pizza_sales;
 (https://github.com/nirabhi18/test/assets/174709222/9d6d8b03-d21f-40dd-a1cb-8dfbd1936dc5) 
+
 Total Orders- SELECT COUNT(DISTINCT order_id) AS Total_Orders FROM pizza_sales;
 (https://github.com/nirabhi18/test/assets/174709222/20198b9c-c798-4b80-884b-5edfaee81999) 
+
 Average Pizzas Per Order- SELECT CAST(CAST(SUM(quantity) AS DECIMAL(10,2)) / CAST(COUNT(DISTINCT order_id) AS DECIMAL(10,2)) AS DECIMAL(10,2)) AS Avg_Pizzas_per_order FROM pizza_sales;
 (https://github.com/nirabhi18/test/assets/174709222/5b9f4f69-1eb6-45e3-af91-c3714ecbb913) 
+
 Daily Trend for Total Orders- SELECT DATENAME(DW, order_date) AS order_day, COUNT(DISTINCT order_id) AS total_orders FROM pizza_sales GROUP BY DATENAME(DW, order_date);
-(https://github.com/nirabhi18/test/assets/174709222/fc72b18a-2bfc-4d2a-be69-3d3fdbd6113a) 
+(https://github.com/nirabhi18/test/assets/174709222/fc72b18a-2bfc-4d2a-be69-3d3fdbd6113a)
+
 Monthly Trend for Orders- SELECT DATENAME(MONTH, order_date) AS Month_Name, COUNT(DISTINCT order_id) AS Total_Orders FROM pizza_sales GROUP BY DATENAME(MONTH, order_date);
 (https://github.com/nirabhi18/test/assets/174709222/cc8556b4-ebbc-4722-a748-9109718ef206) 
+
 % of Sales by Pizza Category-SELECT pizza_category, CAST(SUM(total_price) AS DECIMAL(10,2)) as total_revenue, CAST(SUM(total_price) * 100 / (SELECT SUM(total_price) FROM pizza_sales) AS DECIMAL(10,2)) AS PCT FROM pizza_sales GROUP BY pizza_category;
 (https://github.com/nirabhi18/test/assets/174709222/8a4cb77f-a08d-4403-8761-6a3a63f121e4) 
+
 % of Sales by Pizza Size- SELECT pizza_size, CAST(SUM(total_price) AS DECIMAL(10,2)) as total_revenue, CAST(SUM(total_price) * 100 / (SELECT SUM(total_price) FROM pizza_sales) AS DECIMAL(10,2)) AS PCT FROM pizza_sales GROUP BY pizza_size ORDER BY pizza_size;
 (https://github.com/nirabhi18/test/assets/174709222/ea151635-7973-476d-b3e8-fef4bdd5b6a6) 
+
 Total Pizzas Sold by Pizza Category- SELECT pizza_category, SUM(quantity) as Total_Quantity_Sold FROM pizza_sales WHERE MONTH(order_date) = 2 GROUP BY pizza_category ORDER BY Total_Quantity_Sold DESC;
 (https://github.com/nirabhi18/test/assets/174709222/98effba5-bfdf-449b-8d82-0b52b01d9efc) 
+
 Top 5 Pizzas by Revenue- SELECT TOP 5 pizza_name, SUM(total_price) AS Total_Revenue FROM pizza_sales GROUP BY pizza_name ORDER BY Total_Revenue DESC;
 (https://github.com/nirabhi18/test/assets/174709222/65cb52b9-8dfa-420a-a589-db8e1d8c9a0f) 
+
 Bottom 5 Pizzas by Revenue- SELECT TOP 5 pizza_name, SUM(total_price) AS Total_Revenue FROM pizza_sales GROUP BY pizza_name ORDER BY Total_Revenue ASC;
 (https://github.com/nirabhi18/test/assets/174709222/3e68fc27-15b6-41c9-b981-bca4da510d15)
+
 Top 5 Pizzas by Quantity- SELECT TOP 5 pizza_name, SUM(quantity) AS Total_Pizza_Sold FROM pizza_sales GROUP BY pizza_name ORDER BY Total_Pizza_Sold DESC;
 (https://github.com/nirabhi18/test/assets/174709222/837d9ce7-c98b-4939-a87a-c316d6a169c3) 
+
 Bottom 5 Pizzas by Quantity-SELECT TOP 5 pizza_name, SUM(quantity) AS Total_Pizza_Sold FROM pizza_sales GROUP BY pizza_name ORDER BY Total_Pizza_Sold ASC;
 (https://github.com/nirabhi18/test/assets/174709222/7e4a6dd8-6014-4087-9eb3-8164eba240aa) 
+
 Top 5 Pizzas by Total Orders:SELECT TOP 5 pizza_name, COUNT(DISTINCT order_id) AS Total_Orders FROM pizza_sales GROUP BY pizza_name ORDER BY Total_Orders DESC;
 (https://github.com/nirabhi18/test/assets/174709222/bb963ca5-8115-4486-9b4d-cb7d1547cde6) 
+
 Bottom 5 Pizzas by Total Orders- SELECT TOP 5 pizza_name, COUNT(DISTINCT order_id) AS Total_Orders FROM pizza_sales GROUP BY pizza_name ORDER BY Total_Orders ASC;
 (https://github.com/nirabhi18/test/assets/174709222/050e2025-8b93-4909-9bcf-5d3c9e433695)
 
+
 Step 3: Transform and Clean Data
 Ensure data is clean:
+
 Remove duplicates, handle missing values, and ensure data types are correct.
 Apply necessary transformations using Power Query Editor.
+
 Step 4: Create Visuals in Power BI Report
 Create Visualizations:
 
 Total Revenue: Use a Card visual to display the total revenue.
+
 Average Order Value: Use a Card visual for the average order value.
+
 Total Pizzas Sold: Use a Card visual for the total pizzas sold.
+
 Total Orders: Use a Card visual for the total orders.
+
 Average Pizzas Per Order: Use a Card visual for the average pizzas per order.
+
 Daily Trend for Total Orders: Use a Line Chart or Bar Chart to show the trend.
+
 Monthly Trend for Orders: Use a Line Chart or Bar Chart for monthly trends.
+
 % of Sales by Pizza Category: Use a Pie Chart or Donut Chart for percentage distribution.
+
 % of Sales by Pizza Size: Use a Pie Chart or Donut Chart for percentage distribution.
+
 Total Pizzas Sold by Pizza Category: Use a Bar Chart to show quantities sold by category.
+
 Top 5 and Bottom 5 Pizzas by Revenue: Use Bar Charts to show the top and bottom performers.
+
 Top 5 and Bottom 5 Pizzas by Quantity: Use Bar Charts to show the top and bottom performers by quantity.
+
 Top 5 and Bottom 5 Pizzas by Total Orders: Use Bar Charts to show the top and bottom performers by total orders.
+
 Add Slicers for Interactivity:
 
 Add slicers for Pizza Type, Customer Type, Location, and Order Type to allow users to filter data dynamically.
+
 Step 5: Design and Format the Report
+
 Customize the Theme:
+
 Go to View > Themes and choose a theme or create a custom theme.
+
 Add Titles and Labels:
+
 Use text boxes to add report titles, section headers, and labels to visuals.
+
 Add Company Branding:
+
 Insert the company's logo and other branding elements using the Insert tab.
+
 Optimize Layout:
+
 Arrange visuals logically and ensure the layout is clean and easy to navigate.
+
 Step 6: Publish and Share the Report
+
 Save the Report.
 Publish to Power BI Service:
+
 Go to Home > Publish and select your workspace.
       
 
